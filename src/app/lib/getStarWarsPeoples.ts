@@ -1,9 +1,5 @@
 export const getStarWarsPeoples = async () => {
-  const response = await fetch("https://swapi.dev/api/people", {
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  const response = await fetch("https://swapi.dev/api/people");
 
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
