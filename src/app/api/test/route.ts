@@ -12,14 +12,12 @@ export async function OPTIONS() {
 }
 
 export async function GET() {
-  return new NextResponse(
-    JSON.stringify({ message: "Hello from API!" }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    }
-  );
+  console.log("API /api/test was called");
+  return new NextResponse(JSON.stringify({ message: "Hello from API!" }), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
 }

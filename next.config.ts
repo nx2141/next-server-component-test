@@ -7,7 +7,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "*", // すべてのオリジンを許可（必要に応じて制限）
+            value: "https://next-server-component-test.vercel.app",
           },
           {
             key: "Access-Control-Allow-Methods",
