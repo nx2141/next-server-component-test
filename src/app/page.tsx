@@ -6,11 +6,19 @@ import { getRandomDadJoke } from "./lib/getRandomDadJoke";
 import { getStarWarsPeople } from "./lib/getStarWarsPeople";
 import { getStarWarsPeoples } from "./lib/getStarWarsPeoples";
 
+// Star Wars APIのレスポンスの型を定義
+interface StarWarsCharacter {
+  name: string;
+  gender: string;
+}
+
 export default function Home() {
   const [text, setText] = useState<string>("Loading...");
   const [dadJoke, setDadJoke] = useState<string>("Loading...");
   const [starWarsPeople, setStarWarsPeople] = useState<string>("Loading...");
-  const [starWarsPeoples, setStarWarsPeoples] = useState<any[]>([]);
+  const [starWarsPeoples, setStarWarsPeoples] = useState<StarWarsCharacter[]>(
+    []
+  );
 
   useEffect(() => {
     getTest()
