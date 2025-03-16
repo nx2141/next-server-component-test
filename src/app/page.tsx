@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { getTest } from "./lib/getText";
 import { getRandomDadJoke } from "./lib/getRandomDadJoke";
+import { getStarWarsPeople } from "./lib/getStarWarsPeople";
 
 export default function Home() {
   const [text, setText] = useState<string>("Loading...");
   const [dadJoke, setDadJoke] = useState<string>("Loading...");
+  const [starWarsPeople, setStarWarsPeople] = useState<string>("Loading...");
 
   useEffect(() => {
     getTest()
@@ -26,6 +28,15 @@ export default function Home() {
         console.error("Error fetching dad joke:", error);
         setDadJoke("Error loading dad joke");
       });
+
+    getStarWarsPeople()
+      .then((data) => {
+        setStarWarsPeople(data.name);
+      })
+      .catch((error) => {
+        console.error("Error fetching dad joke:", error);
+        setDadJoke("Error loading dad joke");
+      });
   }, []);
 
   return (
@@ -38,6 +49,10 @@ export default function Home() {
         DAD JOKE
       </h2>
       <p>{dadJoke}</p>
+      <h2 className="text-2xl font-bold border-0 border-b border-white mb-2 mt-8">
+        STAR WARS PEOPLE
+      </h2>
+      <p>{starWarsPeople}</p>
     </div>
   );
 }
