@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTest } from "./lib/getText";
 import { getRandomDadJoke } from "./lib/getRandomDadJoke";
 import { getStarWarsPeople } from "./lib/getStarWarsPeople";
 import { getStarWarsPeoples } from "./lib/getStarWarsPeoples";
+import { getKeyText } from "./lib/getKyeText";
+import { getText } from "./lib/getText";
 
 // Star Wars APIのレスポンスの型を定義
 interface StarWarsCharacter {
@@ -14,14 +15,15 @@ interface StarWarsCharacter {
 
 export default function Home() {
   const [text, setText] = useState<string>("Loading...");
+  const [keyText, setKeyText] = useState<string>("Loading...");
   const [dadJoke, setDadJoke] = useState<string>("Loading...");
   const [starWarsPeople, setStarWarsPeople] = useState<string>("Loading...");
   const [starWarsPeoples, setStarWarsPeoples] = useState<StarWarsCharacter[]>(
-    []
+    [],
   );
 
   useEffect(() => {
-    getTest()
+    getText()
       .then((data) => {
         setText(data.message); // JSONの `message` をセット
       })
@@ -56,6 +58,10 @@ export default function Home() {
         console.error("Error fetching Star Wars peoples:", error);
         setStarWarsPeoples([]);
       });
+
+    getKeyText({ key: "123" }).then((data) => {
+      setKeyText(data.key);
+    });
   }, []);
 
   return (
@@ -64,6 +70,8 @@ export default function Home() {
         NEXT ROUTER
       </h2>
       <p>{text}</p>
+      <h3 className="text-xl my-2 font-bold">KEY [123...]</h3>
+      <p>{keyText}</p>
       <h2 className="text-2xl font-bold border-0 border-b border-white mb-2 mt-8">
         DAD JOKE
       </h2>
