@@ -1,19 +1,14 @@
-import { Suspense, use } from "react";
-import { dadJokePromise } from "./lib/apiPromises";
-
-function FetchComponent() {
-  const data = use(dadJokePromise);
-  return (
-    <>
-      <p>{data.joke}</p>
-    </>
-  );
-}
+// app/page.tsx
+import { Suspense } from "react";
+// import FetchComponent from "./_components/FetchComponent";
 
 export default function Page() {
   return (
-    <Suspense fallback={<p>Loading…</p>}>
-      <FetchComponent />
-    </Suspense>
+    <main>
+      {/* 並列フェッチを含むコンポーネントを Suspense 境界で包む */}
+      <Suspense fallback={<p>Loading joke and Luke...</p>}>
+        {/* <FetchComponent /> */}
+      </Suspense>
+    </main>
   );
 }
